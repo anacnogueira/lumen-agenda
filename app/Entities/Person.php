@@ -12,8 +12,8 @@ class Person extends Model
 		'gender'
 	];
 
-	// public function phones()
-	// {
-	// 	//
-	// }
+	public function phones()
+	{
+		return $this->hasMany(Phone::class);
+	}
 }

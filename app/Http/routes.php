@@ -16,3 +16,6 @@
 // });
 
 $app->get('/', ['as'=>'agenda.index','uses' => 'AgendaController@index']);
+
+$app->get('/{letter}', ['as'=>'agenda.letter','uses' => 'AgendaController@index']);
+

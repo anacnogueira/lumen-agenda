@@ -14,8 +14,9 @@ class Phone extends Model
 		'sufix'
 	];
 
-	public function phones()
+	public function getNumberAttribute()
 	{
-		//
+		return "+$this->cod_country ($this->ddd) $this->prefix-$this->sufix";
 	}
+	
 }
