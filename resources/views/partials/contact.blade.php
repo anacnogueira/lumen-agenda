@@ -1,7 +1,10 @@
 <div class="panel panel-default">
   <!-- Default panel contents -->
   <div class="panel-heading">
-  	{{ $person->nickname}}
+    <span class="pull-left">
+      <i class="fa {{ $person->gender == 'M' ? 'fa-male' : 'fa-female' }}"></i>
+    </span> {{ $person->nickname}}
+  
 	<span class="pull-right">
     	<a href="#" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-edit"></i></a>
     	<a href="#" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="Excluir"><i class="fa fa-minus-circle"></i></a>
