@@ -17,6 +17,8 @@
 
 $app->get('/', ['as'=>'agenda.index','uses' => 'AgendaController@index']);
 $app->post('/', ['as'=>'agenda.index','uses' => 'AgendaController@index']);
+$app->get('delete-person/{personID}', ['as'=>'agenda.deletePerson','uses' => 'AgendaController@destroyPerson']);
+$app->get('delete-phone/{personID}/{phoneID}', ['as'=>'agenda.deletePhone','uses' => 'AgendaController@destroyPhone']);
 
 
 $app->get('/{letter}', ['as'=>'agenda.letter','uses' => 'AgendaController@index']);

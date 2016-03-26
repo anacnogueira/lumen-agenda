@@ -29,4 +29,20 @@ class AgendaController extends Controller
 
 		return view('agenda.index', compact('people','letters','search'));
 	}
+
+	public function destroyPerson($personId)
+	{
+
+		Person::find($personId)->delete();
+
+        return redirect()->route("agenda.index");
+	}
+
+	public function destroyPhone($personId, $phoneId)
+	{
+
+       Person::find($personId)->phones()->find($phoneId)->delete();
+      
+       return redirect()->route("agenda.index");
+	}
 }
