@@ -7,42 +7,41 @@ use DB;
 
 class AgendaController extends Controller
 {
-	public function index($letter = 'A', Request $request)
+	public function index($letter = 'A')
 	{
-		$search = '';
+		$people = Person::where('nickname','like',$letter.'%')->get();	
 
-		$letters = Person::select(DB::raw("left(nickname,1) as letter"))
-		->distinct()
-		->orderBy(DB::raw("left(nickname,1)"))
-		->get();
+		$letters = $this->getLetters();		
 
-		$people = Person::where('nickname','like',$letter.'%');
+		return view('agenda.index', compact('people','letters'));
+	}
 
-		if(count($request->all()) > 0 && !empty($request->search)){
-			$search = $request->search;
-
-			$people->where('nickname', 'like', '%'.$search.'%')
-				   ->orWhere('name', 'like', '%'.$search.'%');
+	public function search(Request $request)
+	{
+		$search = $request->search;
+		$people = [];
+		if(!empty($search)){
+			$people = Person::where('nickname', 'like', '%'.$search.'%')
+				   ->orWhere('name', 'like', '%'.$search.'%')
+				   ->get();
 		}
+
+		$letters = $this->getLetters();
+
+		return view('agenda.index', compact('people','letters'));	
 		
-		$people = $people->get();
-
-		return view('agenda.index', compact('people','letters','search'));
 	}
 
-	public function destroyPerson($personId)
+	protected function getLetters()
 	{
+		$letters = [];
+		foreach (Person::all() as $person) {
+			$letters[] = strtoupper(substr($person->nickname,0,1));
+		}
+		sort($letters);
 
-		Person::find($personId)->delete();
-
-        return redirect()->route("agenda.index");
+		return array_unique($letters);
 	}
 
-	public function destroyPhone($personId, $phoneId)
-	{
-
-       Person::find($personId)->phones()->find($phoneId)->delete();
-      
-       return redirect()->route("agenda.index");
-	}
+	
 }

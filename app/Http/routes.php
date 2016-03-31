@@ -16,9 +16,9 @@
 // });
 
 $app->get('/', ['as'=>'agenda.index','uses' => 'AgendaController@index']);
-$app->post('/', ['as'=>'agenda.index','uses' => 'AgendaController@index']);
-$app->get('delete-person/{personID}', ['as'=>'agenda.deletePerson','uses' => 'AgendaController@destroyPerson']);
-$app->get('delete-phone/{personID}/{phoneID}', ['as'=>'agenda.deletePhone','uses' => 'AgendaController@destroyPhone']);
+$app->post('/search', ['as'=>'agenda.search','uses' => 'AgendaController@search']);
+$app->get('person/{id}/delete', ['as'=>'person.destroy','uses' => 'PersonController@destroy']);
+$app->get('phone/{id}/delete', ['as'=>'phone.destroy','uses' => 'PhoneController@destroy']);
 
 
 $app->get('/{letter}', ['as'=>'agenda.letter','uses' => 'AgendaController@index']);

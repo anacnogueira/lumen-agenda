@@ -26,10 +26,10 @@
     				<small><i class="glyphicon glyphicon-phone-alt"></i> Agenda Telefônica</small>
     			</h1>
     			<span class="pull-right">
-    				<form action="{{  route('agenda.index') }}" class="form-inline" method="post">
+    				<form action="{{  route('agenda.search') }}" class="form-inline" method="post">
 
     					<div class="input-group">
-					      <input type="text" name="search" value="{{ $search }}" class="form-control" placeholder="Pesquisar contato">
+					      <input type="text" name="search" value="" class="form-control" placeholder="Pesquisar contato">
 					      <span class="input-group-btn">
 					        <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
 					      </span>
@@ -41,7 +41,7 @@
     	<div class="row">
     		<div class="col-lg-12">
     			@foreach($letters as $letter)
-					<a href="{{ route('agenda.letter',['letter' => $letter->letter]) }}" class="btn btn-primary btn-xs">{{  $letter['letter'] }}</a>
+					<a href="{{ route('agenda.letter',['letter' => $letter]) }}" class="btn btn-primary btn-xs">{{  $letter }}</a>
     			@endforeach
     		</div>
     	</div>
